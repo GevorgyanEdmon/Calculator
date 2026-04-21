@@ -5,13 +5,17 @@ using namespace std;
 double a, b, result;
 char op;
 
-int main() {
-    cout << "Enter number a: ";
-    cin >> a;
+double EnterNum() {
+    double x;
+    cout << "Enter number x: ";
+    cin >> x;
+    return x;
+}
 
-    cout << "Enter number b: ";
-    cin >> b;
-    cout << "Введите арифметическую операцию: ";
+int main() {
+    a = EnterNum();
+    b = EnterNum();
+    cout << "Enter operation: ";
     cin >> op;
     switch (op) {
         case '+':
