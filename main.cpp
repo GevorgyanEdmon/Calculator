@@ -1,43 +1,51 @@
-#include <algorithm>
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
-double a, b, result;
-char op;
-
-double EnterNum() {
-    double x;
-    cout << "Enter number x: ";
-    cin >> x;
-    return x;
-}
 
 int main() {
-    a = EnterNum();
-    b = EnterNum();
-    cout << "Enter operation: ";
-    cin >> op;
-    switch (op) {
-        case '+':
-            result = a + b;
-            break;
-        case '-':
-            result = a - b;
-            break;
-        case '*':
-            result = a * b;
-            break;
-        case '/':
-            if (b == 0) {
-                cout << "Деление на ноль" << endl;
-                return 0;
-            } else {
-                result = a / b;
-            }
-            break;
+    double num, result;
+    char op;
 
-        default: cout << "Ошибка: неподдерживаемая операция" << endl;
-            return 0;
+    cout << "Enter virazhenie: ";
+    try {
+        if (!(cin >> result)) {
+            throw runtime_error("iN BEGIN NOT NUMBER");
+        }
+
+        while (cin >> op >> num) {
+            switch (op) {
+                case '+':
+                    result = result + num;
+                    break;
+                case '-':
+                    result = result - num;
+                    break;
+                case '*':
+                    result = result * num;
+                    break;
+                case '/':
+                    if (num == 0) {
+                        cout << "DIVISION ZERO" << endl;
+                        return 0;
+                    } else {
+                        result = result / num;
+                    }
+                    break;
+            }
+
+            if (cin.peek() == '\n') {
+                break;
+            }
+        }
+        if (cin.fail()) {
+            throw runtime_error("not number");
+        }
+        cout << "Result: " << result << endl;
     }
-    cout << result << endl;
+    catch (const exception& e) {
+        cout << "error: " << e.what() << endl;
+    }
+
+    return 0;
 }
